@@ -11,7 +11,14 @@ COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
-
+# Install required dependencies for GDAL
+RUN apk update && apk add --no-cache \
+    gdal-dev \
+    geos-dev \
+    proj-dev \
+    musl-dev \
+    gcc \
+    g++
 
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
@@ -21,6 +28,9 @@ RUN python -m venv /py && \
     /py/bin/pip install -r /requirements.txt && \
     apk del .tmp-deps && \
     adduser --disabled-password --no-create-home app
+
+# Clean up build dependencies (optional)
+RUN apk del gcc g++
 
 ENV PATH="/py/bin:$PATH"
 
