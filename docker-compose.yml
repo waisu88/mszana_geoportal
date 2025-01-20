@@ -13,6 +13,7 @@ services:
     volumes:
       - ./app:/app # wszelkie zmiany w folderze lokalnym będą widoczne w kontenerze
       # potrzebne do developmentu
+      - ./data/web:/vol/web
     environment:
       - SECRET_KEY=devsecretkey
       - DEBUG=1
