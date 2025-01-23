@@ -7,22 +7,27 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /requirements.txt
 COPY ./app /app
 
-
 WORKDIR /app
 EXPOSE 8000
 
 # Install required dependencies for GDAL
 RUN apk update && apk add --no-cache \
+    gdal \
     gdal-dev \
+    gdal-tools \
     geos-dev \
     proj-dev \
     musl-dev \
     gcc \
-    g++
+    g++ \
+    libstdc++ \
+    postgresql-client \
+    curl && \
+    ln -s /usr/lib/libgdal.so /usr/lib/libgdal.so.3
 
+# Create Python virtual environment and install dependencies
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-deps \
         build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /requirements.txt && \
@@ -33,13 +38,18 @@ RUN python -m venv /py && \
     chown -R app:app /vol && \
     chmod -R 755 /vol
 
+RUN /py/bin/pip install --no-cache-dir "GDAL==$(gdal-config --version)"
+
+
+# Set environment variables for GDAL and GEOS
+ENV GDAL_LIBRARY_PATH=/usr/lib/libgdal.so
+ENV GEOS_LIBRARY_PATH=/usr/lib/libgeos_c.so
+
 # Clean up build dependencies (optional)
 RUN apk del gcc g++
 
 ENV PATH="/py/bin:$PATH"
 
-USER app
+# USER app
 
 # CMD ["run.sh"]
-
-

@@ -12,6 +12,41 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+import ctypes
+import os
+
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', '/usr/lib/libgdal.so')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH', '/usr/lib/libgeos_c.so')
+
+# Test załadowania bibliotek (opcjonalne):
+try:
+    ctypes.CDLL(GDAL_LIBRARY_PATH)
+    ctypes.CDLL(GEOS_LIBRARY_PATH)
+except OSError as e:
+    raise e.ImproperlyConfigured(f"Cannot load GDAL or GEOS library: {e}")
+
+# if os.environ.get('DOCKER', False):  
+#     # Ustawienia dla Docker
+#     GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.36'  # Ścieżka do libgdal w Dockerze
+#     GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so'  # Ścieżka do libgeos w Dockerze
+# else:
+#     # Ustawienia dla Windows (wersja developerska)
+#     if os.name == 'nt':
+#         VENV_BASE = os.environ['VIRTUAL_ENV']
+#         os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
+#         os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ['PATH']
+
+#         GDAL_LIBRARY_PATH = os.path.join("C:/OSGeo4W/bin/gdal309.dll")
+#         GEOS_LIBRARY_PATH = r'C:/OSGeo4W/bin/geos_c.dll'
+
+# GDAL_LIBRARY_PATH = os.getenv("GDAL_LIBRARY_PATH", "/usr/lib/libgdal.so")
+"""PRAWDOPODOBNIE TRZEBA SPRAWDZIĆ PLIK ZGODNEI Z TUTORIALEM NA UDEMY
+django.core.exceptions.ImproperlyConfigured: Could not find the GDAL library 
+(tried "gdal", "GDAL", "gdal3.8.0", "gdal3.7.0", "gdal3.6.0", "gdal3.5.0", 
+"gdal3.4.0", "gdal3.3.0", "gdal3.2.0", "gdal3.1.0", "gdal3.0.0"). Is GDAL installed? 
+If it is, try setting GDAL_LIBRARY_PATH in your settings.
+"""
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,7 +78,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_gis',
+
+    'django.contrib.gis',
+
     'core',
+    'geoportal',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +123,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'HOST': os.environ.get('DB_HOST'),
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
