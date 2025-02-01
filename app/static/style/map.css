@@ -1,0 +1,31 @@
+
+/* Ewentualnie dodaj margines dla separacji grup */
+.leaflet-control-layers-group label{
+    padding-left: 20px;
+}
+
+.leaflet-control-layers-group .leaflet-control-layers-group-label {
+    padding-left: 5px; /* Wcięcie dla głównych grup */
+}
+
+.leaflet-control-layers .podklad {
+    text-decoration: underline;
+    position: relative;
+}
+
+.leaflet-control-layers .podklad:hover::after {
+    content: " (Może się dłużej wczytywać)";
+    position: fixed; /* Stała pozycja względem okna przeglądarki */
+    top: 50px; /* Odległość od górnej krawędzi okna */
+    right: 2%; /* Wyśrodkowanie względem okna */
+    transform: translateX(-50%); /* Wyrównanie środka tekstu */
+    background-color: rgba(255, 255, 255, 0.9); /* Tło dla tooltipa */
+    color: #000; /* Kolor tekstu */
+    font-size: 14px; /* Rozmiar czcionki */
+    padding: 5px 10px; /* Wewnętrzny odstęp w tooltipie */
+    border-radius: 5px; /* Zaokrąglone rogi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Cień tooltipa */
+    white-space: nowrap; /* Unikaj łamania tekstu */
+    z-index: 1000; /* Wyświetl ponad innymi elementami */
+    pointer-events: none; /* Zapobiegaj interakcji z tooltipem */
+}

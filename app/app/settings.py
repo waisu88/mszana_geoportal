@@ -85,6 +85,7 @@ INSTALLED_APPS = [
 
     'core',
     'geoportal',
+    'geoportal_frontend',
 ]
 
 MIDDLEWARE = [
@@ -102,7 +103,9 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'geoportal_frontend/templates/geoportal_frontend',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -168,6 +171,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/static/'
 MEDIA_URL= '/static/media/'
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_ROOT = '/vol/web/media'
 STATIC_ROOT = '/vol/web/static'

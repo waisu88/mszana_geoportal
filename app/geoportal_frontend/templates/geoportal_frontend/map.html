@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Layers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="{% static 'GroupedLayer/leaflet.groupedlayercontrol.css' %}" />
+    <script src="{% static 'GroupedLayer/leaflet.groupedlayercontrol.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'Leafletmarkercluster1.4.1/dist/MarkerCluster.css' %}">
+    <link rel="stylesheet" href="{% static 'Leafletmarkercluster1.4.1/dist/MarkerCluster.Default.css' %}">
+    <script src="{% static 'Leafletmarkercluster1.4.1/dist/leaflet.markercluster-src.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style/map.css' %}" />
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="{% static 'scripts/initMap.js' %}"></script>
+    <script type="module" src="{% static 'scripts/layers.js' %}"></script>
+</body>
+</html>

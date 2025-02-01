@@ -22,7 +22,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('geoportal.urls'))
+    path('', include('geoportal.urls')),
+    path('map/', include('geoportal_frontend.urls')),
 ]
 
 if settings.DEBUG:
