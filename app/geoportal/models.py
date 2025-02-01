@@ -60,3 +60,9 @@ class Building(models.Model):
     id  = models.AutoField(primary_key=True)
     geometry = models.PointField(srid=4326, verbose_name="Geometry")
     year = models.CharField(max_length=4, null=True, blank=True)
+
+
+class HighwayField(models.Model):
+    id  = models.AutoField(primary_key=True)
+    geometry = models.PolygonField(srid=4326, verbose_name="Geometry")
+    year = models.CharField(max_length=4, null=True, blank=True)

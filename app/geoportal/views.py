@@ -8,7 +8,8 @@ CompactSettlement,
 OtherType, 
 MultiOtherType,
 MeadowOrPasture, 
-Forest
+Forest,
+HighwayField
 )
 from .serializers import (
     LakeOrPondSerializer, 
@@ -19,7 +20,8 @@ from .serializers import (
     OtherTypeSerializer, 
     MultiOtherTypeSerializer,
     RiverSerializer, 
-    RoadSerializer
+    RoadSerializer,
+    HigwayFieldSerializer
 )
 
 # Widoki dla jezior i stawów
@@ -201,3 +203,8 @@ class Road1884APIView(generics.ListAPIView):
 class Road2009APIView(generics.ListAPIView):
     queryset = Road.objects.filter(year="2009")
     serializer_class = RoadSerializer
+
+
+class HighwayFieldAPIView(generics.ListAPIView):
+    queryset = HighwayField.objects.all()
+    serializer_class = HigwayFieldSerializer

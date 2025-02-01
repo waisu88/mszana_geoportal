@@ -8,7 +8,8 @@ CompactSettlement,
 OtherType, 
 MultiOtherType,
 MeadowOrPasture, 
-Forest
+Forest,
+HighwayField
 )
 
 
@@ -70,5 +71,12 @@ class MeadowOrPastureSerializer(GeoFeatureModelSerializer):
 class ForestSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Forest
+        fields = ["id", "geometry", "year"]
+        geo_field = "geometry"
+
+
+class HigwayFieldSerializer(GeoFeatureModelSerializer):
+    class Meta:
+        model = HighwayField
         fields = ["id", "geometry", "year"]
         geo_field = "geometry"

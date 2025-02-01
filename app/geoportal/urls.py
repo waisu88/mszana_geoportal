@@ -35,6 +35,7 @@ from .views import (
     Road1827APIView,
     Road1884APIView,
     Road2009APIView,
+    HighwayFieldAPIView
 )
 
 
@@ -74,4 +75,6 @@ urlpatterns = [
     path('api/roads/1827/', Road1827APIView.as_view(), name='road_1827_api'),
     path('api/roads/1884/', Road1884APIView.as_view(), name='road_1884_api'),
     path('api/roads/2009/', Road2009APIView.as_view(), name='road_2009_api'),
+    path('api/highway/', HighwayFieldAPIView.as_view(), name='highway_api'),
+
 ]

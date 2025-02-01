@@ -19,7 +19,7 @@
     top: 50px; /* Odległość od górnej krawędzi okna */
     right: 2%; /* Wyśrodkowanie względem okna */
     transform: translateX(-50%); /* Wyrównanie środka tekstu */
-    background-color: rgba(255, 255, 255, 0.9); /* Tło dla tooltipa */
+    background-color: rgba(255, 255, 255, 0.8); /* Tło dla tooltipa */
     color: #000; /* Kolor tekstu */
     font-size: 14px; /* Rozmiar czcionki */
     padding: 5px 10px; /* Wewnętrzny odstęp w tooltipie */
@@ -28,4 +28,52 @@
     white-space: nowrap; /* Unikaj łamania tekstu */
     z-index: 1000; /* Wyświetl ponad innymi elementami */
     pointer-events: none; /* Zapobiegaj interakcji z tooltipem */
+}
+
+.leaflet-control-layers {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+
+/* stylowanie legendy */
+
+.legend {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 18px;
+    color: #333;
+    max-width: 200px;
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.legend div {
+    display: flex; /* Ustawienie elementów w jednej linii */
+    align-items: center; /* Wyrównanie ikon do środka */
+    margin-bottom: 5px; /* Odstęp między elementami legendy */
+}
+
+.legend i {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 8px;
+    opacity: 0.8;
+    border: 1px solid #999;
+    flex-shrink: 0; /* Zapobiega rozciąganiu */
+}
+
+.legend {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 8px;
+    padding: 10px;
 }

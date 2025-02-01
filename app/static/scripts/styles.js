@@ -1,16 +1,17 @@
 const baseColors = {
-    roads: [255, 50, 0],      // Czerwony
+    roads: [204, 0, 0],      // Czerwony
     buildings: [0, 0, 0],    // Czarny
-    forests: [0, 128, 0],     // Zielony
+    forests: [0, 102, 0],     // Zielony
     // lakes_ponds: [0, 0, 255], // Niebieski
-    lakes_ponds: [135, 206, 235], // Błękitny
-    settlements: [165, 42, 42], // brązowo-czerwony
-    meadows_pastures: [255, 192, 203], // Różowy
-    other_types: [150, 75, 0], // Brązowy
-    rivers: [135, 206, 235],  // Błękitny
+    lakes_ponds: [0, 0, 255], // Niebieski
+    settlements: [102, 0, 0], // brązowy
+    meadows_pastures: [0, 255, 128], // Fioletowy
+    other_types: [204, 204, 0], // Żółty lekki
+    rivers: [0, 0, 255],  // Niebieski
+    highway_fields: [170, 0, 0]
 };
 
-const colorOpacity = [0.5, 0.75, 1]; // Stałe nasycenia dla kolejnych lat
+const colorOpacity = [0.75, 0.875, 1]; // Stałe nasycenia dla kolejnych lat
 const years = [1827, 1884, 2009]; // Lata obsługiwane
 
 const baseWeights = {

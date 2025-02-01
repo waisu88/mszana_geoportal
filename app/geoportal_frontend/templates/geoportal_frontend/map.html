@@ -13,11 +13,26 @@
     <link rel="stylesheet" href="{% static 'Leafletmarkercluster1.4.1/dist/MarkerCluster.Default.css' %}">
     <script src="{% static 'Leafletmarkercluster1.4.1/dist/leaflet.markercluster-src.js' %}"></script>
     <link rel="stylesheet" href="{% static 'style/map.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/header.css' %}" />
     <style>
         #map { height: 600px; }
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <!-- <img src="{% static 'images/logo.png' %}" alt="Logo strony"> -->
+            <h1>Wędrówki w czasie: Mszana w XIX, XX i XXI wieku</h1>
+        </div>
+        <nav>
+            <a href="https://szymon-wais.netlify.app" target="_blank">Twórca strony</a>
+            
+            <img src="{% static 'images/szymon.jpg' %}" alt="Twórca" class="creator-photo">
+            <a href="https://www.linkedin.com/in/szymon-wais-8b7011226/" target="_blank">
+                <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" class="linkedin-icon">
+            </a>
+        </nav>
+    </header>
     <div id="map"></div>
     <script src="{% static 'scripts/initMap.js' %}"></script>
     <script type="module" src="{% static 'scripts/layers.js' %}"></script>
