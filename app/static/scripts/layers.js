@@ -127,7 +127,7 @@ function createPolygonLayer(data, style) {
     });
 }
 
-const imageUrl = '/static/Mszana.png';
+const imageUrl = '/static/static/messtishblatter.png';
 
 // Zakładam, że wynikowe współrzędne to (pomiń jeśli używasz rzeczywistych danych)
 const bounds = [[50.0147123, 18.4950524], [49.9463421, 18.6120258]];
@@ -135,7 +135,7 @@ const bounds = [[50.0147123, 18.4950524], [49.9463421, 18.6120258]];
 // Dodanie nakładki na mapę
 var mess = L.imageOverlay(imageUrl, bounds);
 
-const mszana1827 = '/static/raster_wgs84.png';
+const mszana1827 = '/static/static/urmesstishblatter.png';
 
 const bounds1827 = [[50.0147105, 18.4950581], [49.9463596, 18.6120213]];
 
