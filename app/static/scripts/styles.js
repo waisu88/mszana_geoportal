@@ -11,8 +11,8 @@ const baseColors = {
     highway_fields: [170, 0, 0]
 };
 
-const colorOpacity = [0.75, 0.875, 1]; // Stałe nasycenia dla kolejnych lat
-const years = [1827, 1884, 2009]; // Lata obsługiwane
+const colorOpacity = [0.7, 0.8, 0.9,  1]; // Stałe nasycenia dla kolejnych lat
+const years = [1827, 1884, 1965, 2009]; // Lata obsługiwane
 
 const baseWeights = {
     roads: 3,

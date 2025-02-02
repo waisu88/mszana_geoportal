@@ -1,9 +1,10 @@
-/* Stylowanie nagłówka */
+/* Ogólne style dla body */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
+/* Stylowanie nagłówka */
 header {
     display: flex;
     align-items: center;
@@ -13,50 +14,61 @@ header {
     padding: 10px 20px;
 }
 
-header .logo {
+/* Lewa sekcja (logo i tytuł) */
+.header-left .logo {
     display: flex;
     align-items: center;
 }
 
-header .logo img {
-    height: 40px; /* Rozmiar logo */
-    margin-right: 10px;
-}
-
-header .logo h1 {
+.header-left .logo h1 {
     margin: 0;
     font-size: 1.8em;
-    align-items: center;
 }
 
-header nav a {
+/* Środkowa sekcja (link "o stronie") */
+.header-center {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-center a {
     color: white;
     text-decoration: none;
-    font-size: 1em;
-    /* margin-left: 20px; */
+    font-size: 1.1em;
 }
 
-header nav a:hover {
+.header-center a:hover {
     text-decoration: underline;
 }
 
-.creator-photo {
-    width: 40px; /* Dopasuj do potrzeb */
-    height: 40px;
-    border-radius: 50%; /* Zaokrąglone zdjęcie */
-    object-fit: cover;
-    border: 2px solid white; /* Ramka, opcjonalnie */
-}
-
-nav {
+/* Prawa sekcja (twórca i linki) */
+.header-right nav {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Elementy na prawo */
-    gap: 15px; /* Odstęp między linkiem a zdjęciem */
+    gap: 15px;
 }
 
+.header-right nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.header-right nav a:hover {
+    text-decoration: underline;
+}
+
+/* Zdjęcie twórcy */
+.creator-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* Ikona LinkedIn */
 .linkedin-icon {
     width: 24px;
     height: 24px;
-    margin-left: 0px;
 }

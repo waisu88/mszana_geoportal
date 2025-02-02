@@ -38,7 +38,12 @@ class LakeOrPond1827APIView(generics.ListAPIView):
 class LakeOrPond1884APIView(generics.ListAPIView):
     queryset = LakeOrPond.objects.filter(year="1884")
     serializer_class = LakeOrPondSerializer
-    
+
+
+class LakeOrPond1965APIView(generics.ListAPIView):
+    queryset = LakeOrPond.objects.filter(year="1965")
+    serializer_class = LakeOrPondSerializer    
+   
 
 class LakeOrPond2009APIView(generics.ListAPIView):
     queryset = LakeOrPond.objects.filter(year="2009")
@@ -60,6 +65,11 @@ class Building1884APIView(generics.ListAPIView):
     serializer_class= BuildingSerializer
     
 
+class Building1965APIView(generics.ListAPIView):
+    queryset = Building.objects.filter(year="1965")
+    serializer_class= BuildingSerializer    
+
+
 class Building2009APIView(generics.ListAPIView):
     queryset = Building.objects.filter(year="2009")
     serializer_class= BuildingSerializer
@@ -77,6 +87,11 @@ class CompactSettlement1827APIView(generics.ListAPIView):
 
 class CompactSettlement1884APIView(generics.ListAPIView):
     queryset = CompactSettlement.objects.filter(year="1884")
+    serializer_class = CompactSettlementSerializer
+
+
+class CompactSettlement1965APIView(generics.ListAPIView):
+    queryset = CompactSettlement.objects.filter(year="1965")
     serializer_class = CompactSettlementSerializer
 
 
@@ -100,6 +115,11 @@ class Forest1884APIView(generics.ListAPIView):
     serializer_class = ForestSerializer
     
 
+class Forest1965APIView(generics.ListAPIView):
+    queryset = Forest.objects.filter(year="1965")
+    serializer_class = ForestSerializer
+
+
 class Forest2009APIView(generics.ListAPIView):
     queryset = Forest.objects.filter(year="2009")
     serializer_class = ForestSerializer
@@ -117,6 +137,11 @@ class MeadowOrPasture1827APIView(generics.ListAPIView):
 
 class MeadowOrPasture1884APIView(generics.ListAPIView):
     queryset = MeadowOrPasture.objects.filter(year="1884")
+    serializer_class = MeadowOrPastureSerializer
+
+
+class MeadowOrPasture1965APIView(generics.ListAPIView):
+    queryset = MeadowOrPasture.objects.filter(year="1965")
     serializer_class = MeadowOrPastureSerializer
 
 
@@ -160,6 +185,11 @@ class MultiOtherType1884APIView(generics.ListAPIView):
     serializer_class = MultiOtherTypeSerializer
 
 
+class MultiOtherType1965APIView(generics.ListAPIView):
+    queryset = MultiOtherType.objects.filter(year="1965")
+    serializer_class = MultiOtherTypeSerializer
+
+
 class MultiOtherType2009APIView(generics.ListAPIView):
     queryset = MultiOtherType.objects.filter(year="2009")
     serializer_class = MultiOtherTypeSerializer
@@ -177,6 +207,11 @@ class River1827APIView(generics.ListAPIView):
 
 class River1884APIView(generics.ListAPIView):
     queryset = River.objects.filter(year="1884")
+    serializer_class = RiverSerializer
+
+
+class River1965APIView(generics.ListAPIView):
+    queryset = River.objects.filter(year="1965")
     serializer_class = RiverSerializer
 
 
@@ -200,10 +235,14 @@ class Road1884APIView(generics.ListAPIView):
     serializer_class = RoadSerializer
 
 
+class Road1965APIView(generics.ListAPIView):
+    queryset = Road.objects.filter(year="1965")
+    serializer_class = RoadSerializer
+
+
 class Road2009APIView(generics.ListAPIView):
     queryset = Road.objects.filter(year="2009")
     serializer_class = RoadSerializer
-
 
 class HighwayFieldAPIView(generics.ListAPIView):
     queryset = HighwayField.objects.all()

@@ -1,4 +1,4 @@
-var map = L.map('map', { maxZoom: 30, minZoom: 13}).setView([49.97, 18.55], 13);
+var map = L.map('map', { maxZoom: 30, minZoom: 12.4}).setView([49.98, 18.55], 12.4);
 
 // Definicja warstw bazowych
 var baseMaps = {

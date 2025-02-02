@@ -4,6 +4,7 @@ import styles from './styles.js';
 var groupedOverlays = {
     "Rok 1827": {}, 
     "Rok 1884": {}, 
+    "Rok 1965": {},
     "Rok 2009": {}
 }
 
@@ -13,6 +14,10 @@ var groupedOverlays = {
 var groupedLayerControl = L.control.groupedLayers(baseMaps, groupedOverlays, { 
     groupCheckboxes: true
 }).addTo(map);
+
+var groupedOverlaysContainer = groupedLayerControl.getContainer();
+L.DomEvent.disableScrollPropagation(groupedOverlaysContainer);
+
 
 // Dodanie komunikatu o ładowaniu
 const loadingMessage = document.createElement("div");
@@ -62,6 +67,9 @@ function fetchAndAddLayer(type, url, style, group, name, zoom) {
             if (group === "Rok 1827") {
                 layer.addTo(map);
             }
+            if (url === '/api/buildings/1965'){
+                fetchAndAddLayer("Polygon", '/api/highway/', styles.generateStyle('highway_fields', 2009), "Rok 2009", "Grunty pod autostradą");
+            } // Jest to bardzo robocze rozwiązanie, ale powoduje, że warstwa highway nie wczytuje się pierwsza
 
             groupedLayerControl.addOverlay(layer, name, group);
         })
@@ -186,36 +194,41 @@ setTimeout(() => {
 }, 500);
 
 fetchAndAddLayer("Polygon", '/api/multi-other-types/1827', styles.generateStyle('other_types', 1827), "Rok 1827", "Pozostałe");
-fetchAndAddLayer("Polygon", '/api/multi-other-types/1884', styles.generateStyle('other_types', 1884), "Rok 1884", "Pozostałe");
-fetchAndAddLayer("Polygon", '/api/multi-other-types/2009', styles.generateStyle('other_types', 2009), "Rok 2009", "Pozostałe");
-
 fetchAndAddLayer("Polygon", '/api/meadows-pastures/1827', styles.generateStyle('meadows_pastures', 1827), "Rok 1827", "Łąki, pastwiska");
-fetchAndAddLayer("Polygon", '/api/meadows-pastures/1884', styles.generateStyle('meadows_pastures', 1884), "Rok 1884", "Łąki, pastwiska");
-fetchAndAddLayer("Polygon", '/api/meadows-pastures/2009', styles.generateStyle('meadows_pastures', 2009), "Rok 2009", "Łąki, pastwiska");
-
 fetchAndAddLayer("Polygon", '/api/forests/1827', styles.generateStyle('forests', 1827), "Rok 1827", "Lasy");
-fetchAndAddLayer("Polygon", '/api/forests/1884', styles.generateStyle('forests', 1884), "Rok 1884", "Lasy");
-fetchAndAddLayer("Polygon", '/api/forests/2009', styles.generateStyle('forests', 2009), "Rok 2009", "Lasy");
-
-fetchAndAddLayer("Polygon", '/api/highway/', styles.generateStyle('highway_fields', 2009), "Rok 2009", "Grunty pod autostradą");
-
 fetchAndAddLayer("Polygon", '/api/lakes-ponds/1827', styles.generateStyle('lakes_ponds', 1827), "Rok 1827", "Jeziora, stawy");
-fetchAndAddLayer("Polygon", '/api/lakes-ponds/1884', styles.generateStyle('lakes_ponds', 1884), "Rok 1884", "Jeziora, stawy");
-fetchAndAddLayer("Polygon", '/api/lakes-ponds/2009', styles.generateStyle('lakes_ponds', 2009), "Rok 2009", "Jeziora, stawy");
-
 fetchAndAddLayer("Polygon", '/api/settlements/1827', styles.generateStyle('settlements', 1827), "Rok 1827", "Zabudowa");
-fetchAndAddLayer("Polygon", '/api/settlements/1884', styles.generateStyle('settlements', 1884), "Rok 1884", "Zabudowa");
-fetchAndAddLayer("Polygon", '/api/settlements/2009', styles.generateStyle('settlements', 2009), "Rok 2009", "Zabudowa");
-
 fetchAndAddLayer("Polyline", '/api/rivers/1827', styles.generateStyle('rivers', 1827), "Rok 1827", "Rzeki");
-fetchAndAddLayer("Polyline", '/api/rivers/1884', styles.generateStyle('rivers', 1884), "Rok 1884", "Rzeki");
-fetchAndAddLayer("Polyline", '/api/rivers/2009', styles.generateStyle('rivers', 2009), "Rok 2009", "Rzeki");
-
 fetchAndAddLayer("Polyline", '/api/roads/1827', styles.generateStyle('roads', 1827), "Rok 1827", "Drogi");
-fetchAndAddLayer("Polyline", '/api/roads/1884', styles.generateStyle('roads', 1884), "Rok 1884", "Drogi");
-fetchAndAddLayer("Polyline", '/api/roads/2009', styles.generateStyle('roads', 2009), "Rok 2009", "Drogi");
-
 fetchAndAddLayer("Point", '/api/buildings/1827', styles.generateStyle('buildings', 1827), "Rok 1827", "Budynki", 10);
+
+
+fetchAndAddLayer("Polygon", '/api/multi-other-types/1884', styles.generateStyle('other_types', 1884), "Rok 1884", "Pozostałe");
+fetchAndAddLayer("Polygon", '/api/meadows-pastures/1884', styles.generateStyle('meadows_pastures', 1884), "Rok 1884", "Łąki, pastwiska");
+fetchAndAddLayer("Polygon", '/api/forests/1884', styles.generateStyle('forests', 1884), "Rok 1884", "Lasy");
+fetchAndAddLayer("Polygon", '/api/lakes-ponds/1884', styles.generateStyle('lakes_ponds', 1884), "Rok 1884", "Jeziora, stawy");
+fetchAndAddLayer("Polygon", '/api/settlements/1884', styles.generateStyle('settlements', 1884), "Rok 1884", "Zabudowa");
+fetchAndAddLayer("Polyline", '/api/rivers/1884', styles.generateStyle('rivers', 1884), "Rok 1884", "Rzeki");
+fetchAndAddLayer("Polyline", '/api/roads/1884', styles.generateStyle('roads', 1884), "Rok 1884", "Drogi");
 fetchAndAddLayer("Point", '/api/buildings/1884', styles.generateStyle('buildings', 1884), "Rok 1884", "Budynki", 10);
+
+
+fetchAndAddLayer("Polygon", '/api/multi-other-types/1965', styles.generateStyle('other_types', 1965), "Rok 1965", "Pozostałe");
+fetchAndAddLayer("Polygon", '/api/meadows-pastures/1965', styles.generateStyle('meadows_pastures', 1965), "Rok 1965", "Łąki, pastwiska");
+fetchAndAddLayer("Polygon", '/api/forests/1965', styles.generateStyle('forests', 1965), "Rok 1965", "Lasy");
+fetchAndAddLayer("Polygon", '/api/lakes-ponds/1965', styles.generateStyle('lakes_ponds', 1965), "Rok 1965", "Jeziora, stawy");
+fetchAndAddLayer("Polygon", '/api/settlements/1965', styles.generateStyle('settlements', 1965), "Rok 1965", "Zabudowa");
+fetchAndAddLayer("Polyline", '/api/rivers/1965', styles.generateStyle('rivers', 1965), "Rok 1965", "Rzeki");
+fetchAndAddLayer("Polyline", '/api/roads/1965', styles.generateStyle('roads', 1965), "Rok 1965", "Drogi");
+fetchAndAddLayer("Point", '/api/buildings/1965', styles.generateStyle('buildings', 1965), "Rok 1965", "Budynki", 10);
+
+
+fetchAndAddLayer("Polygon", '/api/multi-other-types/2009', styles.generateStyle('other_types', 2009), "Rok 2009", "Pozostałe");
+fetchAndAddLayer("Polygon", '/api/meadows-pastures/2009', styles.generateStyle('meadows_pastures', 2009), "Rok 2009", "Łąki, pastwiska");
+fetchAndAddLayer("Polygon", '/api/forests/2009', styles.generateStyle('forests', 2009), "Rok 2009", "Lasy");
+fetchAndAddLayer("Polygon", '/api/lakes-ponds/2009', styles.generateStyle('lakes_ponds', 2009), "Rok 2009", "Jeziora, stawy");
+fetchAndAddLayer("Polygon", '/api/settlements/2009', styles.generateStyle('settlements', 2009), "Rok 2009", "Zabudowa");
+fetchAndAddLayer("Polyline", '/api/rivers/2009', styles.generateStyle('rivers', 2009), "Rok 2009", "Rzeki");
+fetchAndAddLayer("Polyline", '/api/roads/2009', styles.generateStyle('roads', 2009), "Rok 2009", "Drogi");
 fetchAndAddLayer("Point", '/api/buildings/2009', styles.generateStyle('buildings', 2009), "Rok 2009", "Budynki", 10);
 
