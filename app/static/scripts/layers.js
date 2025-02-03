@@ -67,10 +67,6 @@ function fetchAndAddLayer(type, url, style, group, name, zoom) {
             if (group === "Rok 1827") {
                 layer.addTo(map);
             }
-            if (url === '/api/buildings/1965'){
-                fetchAndAddLayer("Polygon", '/api/highway/', styles.generateStyle('highway_fields', 2009), "Rok 2009", "Grunty pod autostradą");
-            } // Jest to bardzo robocze rozwiązanie, ale powoduje, że warstwa highway nie wczytuje się pierwsza
-
             groupedLayerControl.addOverlay(layer, name, group);
         })
         .catch(error => console.error("Błąd ładowania warstwy:", error))
@@ -83,7 +79,20 @@ function fetchAndAddLayer(type, url, style, group, name, zoom) {
                 loadingMessage.innerText = "Mapa przedstawia zagospodarowanie w roku 1827, użyj menu po prawej stronie, aby sprawdzić inne lata";
                 setTimeout(() => {
                     loadingMessage.style.display = "none"; // Ukrywamy komunikat po 5 sekundach
-                }, 5000);
+                    
+                    
+                    setTimeout(() => {
+                        loadingMessage.innerText = "Jeśli chcesz zobaczyć mapy na podstawie których analizowane było zagospodarowanie, znajdź w menu podkreślone nazwy";
+                        loadingMessage.style.display = "block";
+                        setTimeout(() => {
+                            loadingMessage.style.display = "none";
+                        }, 8000);
+    
+                    }, 2000);
+
+
+
+                }, 8000);
             }
         });
 }
@@ -135,23 +144,37 @@ function createPolygonLayer(data, style) {
     });
 }
 
-const imageUrl = '/static/static/messtishblatter.png';
+const messtishblatter = '/static/static/messtishblatter.png';
 
 // Zakładam, że wynikowe współrzędne to (pomiń jeśli używasz rzeczywistych danych)
 const bounds = [[50.0147123, 18.4950524], [49.9463421, 18.6120258]];
 
 // Dodanie nakładki na mapę
-var mess = L.imageOverlay(imageUrl, bounds);
+var mess = L.imageOverlay(messtishblatter, bounds);
 
-const mszana1827 = '/static/static/urmesstishblatter.png';
+const urmesstishblatter = '/static/static/urmesstishblatter.png';
 
 const bounds1827 = [[50.0147105, 18.4950581], [49.9463596, 18.6120213]];
 
-var urm = L.imageOverlay(mszana1827, bounds1827);
+var urm = L.imageOverlay(urmesstishblatter, bounds1827);
+
+const topograficzna = '/static/static/topograficzna.png';
+
+const boundsTopo = [[50.0147105, 18.4950581], [49.9463596, 18.6120213]]; // do zmiany
+
+var topo = L.imageOverlay(topograficzna, boundsTopo)
+
+const ortofotomapa = '/static/static/ortofotomapa.png';
+
+const boundsOrto = [[50.0147105, 18.4950581], [49.9463596, 18.6120213]]; // do zmiany
+
+var orto = L.imageOverlay(ortofotomapa, boundsOrto)
+
 
 groupedLayerControl.addOverlay(urm, "<span class='podklad'>Urmesstischblatter</span>", "Rok 1827")
 groupedLayerControl.addOverlay(mess, "<span class='podklad'>Messtischblatter</span>", "Rok 1884")
-
+groupedLayerControl.addOverlay(topo, "<span class='podklad brak-podkladu'>Topograficzna</span>", "Rok 1965")
+groupedLayerControl.addOverlay(orto, "<span class='podklad brak-podkladu'>Ortofotomapa</span>", "Rok 2009")
 
 const legendCategories = {
     roads: "Drogi",
@@ -228,6 +251,7 @@ fetchAndAddLayer("Polygon", '/api/meadows-pastures/2009', styles.generateStyle('
 fetchAndAddLayer("Polygon", '/api/forests/2009', styles.generateStyle('forests', 2009), "Rok 2009", "Lasy");
 fetchAndAddLayer("Polygon", '/api/lakes-ponds/2009', styles.generateStyle('lakes_ponds', 2009), "Rok 2009", "Jeziora, stawy");
 fetchAndAddLayer("Polygon", '/api/settlements/2009', styles.generateStyle('settlements', 2009), "Rok 2009", "Zabudowa");
+fetchAndAddLayer("Polygon", '/api/highway/', styles.generateStyle('highway_fields', 2009), "Rok 2009", "Grunty pod autostradą");
 fetchAndAddLayer("Polyline", '/api/rivers/2009', styles.generateStyle('rivers', 2009), "Rok 2009", "Rzeki");
 fetchAndAddLayer("Polyline", '/api/roads/2009', styles.generateStyle('roads', 2009), "Rok 2009", "Drogi");
 fetchAndAddLayer("Point", '/api/buildings/2009', styles.generateStyle('buildings', 2009), "Rok 2009", "Budynki", 10);
