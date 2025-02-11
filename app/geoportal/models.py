@@ -4,7 +4,7 @@ from django.contrib.gis.db import models
 
 class LakeOrPond(models.Model):
     id  = models.AutoField(primary_key=True)
-    geometry = models.PolygonField(srid=4326, verbose_name="Geometry")
+    geometry = models.MultiPolygonField(srid=4326, verbose_name="Geometry")
     year = models.CharField(max_length=4, null=True, blank=True)
 
     def __str__(self):
@@ -25,7 +25,7 @@ class Road(models.Model):
 
 class CompactSettlement(models.Model):
     id  = models.AutoField(primary_key=True)
-    geometry = models.PolygonField(srid=4326, verbose_name="Geometry")
+    geometry = models.MultiPolygonField(srid=4326, verbose_name="Geometry")
     year = models.CharField(max_length=4, null=True, blank=True)
 
     def __str__(self):
