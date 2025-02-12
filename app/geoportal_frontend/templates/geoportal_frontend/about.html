@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O serwisie</title>
-   
-    <link rel="stylesheet" href="{% static 'style/about.css' %}" />
+    <title>Podgląd PDF</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .left-panel {
+            width: 40%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .right-panel {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        iframe {
+            width: 90%;
+            height: 90%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Tytuł</h1>
-    <span>Jak powstała ta strona</span>
-    <h4>Właśnie tak</h4>
-   
+    <div class="left-panel">
+        <h1>O stronie</h1>
+        <p>Niniejsza strona powstała, aby podzielić się wynikami badań przeprowadzonych w ramach mojej pracy magisterskiej z lat 2011/2012. W trakcie jej tworzenia analizowałem zmiany w zagospodarowaniu przestrzennym, porównując dane z 2009 roku z aktualnym zdjęciem satelitarnym. 
+        
+        Byłem zaskoczony tempem tych zmian – pojawiło się wiele nowych obszarów leśnych, liczne budynki, a także zniknęły niektóre struktury istniejące wcześniej. 
+        
+        Zapraszam do odkrywania historii gminy Mszana – od map kartografów XIX wieku, przez lata powojenne, aż po zdjęcia satelitarne z 2009 roku. Jeśli podczas przeglądania zauważysz obiekty, które według Twojej wiedzy nie powinny się znajdować w danym miejscu, pamiętaj, że: 
+        <ul>
+            <li>Mapy były tworzone w skali 1:25 000 (1 mm odpowiada 25 m w terenie).</li>
+            <li>Dokładność rysunków zależała od ówczesnych metod kartograficznych.</li>
+            <li>Możliwe są błędy wynikające z interpretacji i naniesienia danych.</li>
+        </ul>
+        Mam nadzieję, że strona dostarczy ciekawych wrażeń i pozwoli spojrzeć na przestrzenną ewolucję gminy Mszana.</p>
+    </div>
+    <div class="right-panel">
+        <iframe src="/static/static/Praca_magisterska_Szymon_Wais.pdf"></iframe>
+    </div>
 </body>
 </html>
