@@ -40,8 +40,8 @@ RUN python -m venv /py && \
     chmod -R 755 /vol && \
     chmod -R +x /scripts
 
-RUN /py/bin/pip install --no-cache-dir "GDAL==$(gdal-config --version)"
-
+# RUN /py/bin/pip install --no-cache-dir "GDAL==$(gdal-config --version)"
+RUN /py/bin/pip install --no-cache-dir --no-binary GDAL GDAL
 
 # Set environment variables for GDAL and GEOS
 # ENV GDAL_LIBRARY_PATH=/usr/lib/libgdal.so
