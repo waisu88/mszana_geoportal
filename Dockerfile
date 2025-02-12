@@ -1,4 +1,4 @@
-FROM python:3.10-alpine3.21
+FROM python:3.10.12-alpine
 
 LABEL maintainer="szymon-wais.netlify.app"
 
@@ -40,15 +40,19 @@ RUN python -m venv /py && \
     chmod -R 755 /vol && \
     chmod -R +x /scripts
 
-RUN /py/bin/pip install --no-cache-dir "GDAL==$(gdal-config --version)"
+
+    # Clean up build dependencies (optional)
+RUN apk del gcc g++
+
+# RUN /py/bin/pip install --no-cache-dir "GDAL==$(gdal-config --version)"
 # RUN /py/bin/pip install --no-cache-dir --no-binary GDAL GDAL
 
 # Set environment variables for GDAL and GEOS
 # ENV GDAL_LIBRARY_PATH=/usr/lib/libgdal.so
 # ENV GEOS_LIBRARY_PATH=/usr/lib/libgeos_c.so
 
-# Clean up build dependencies (optional)
-RUN apk del gcc g++
+
+
 
 ENV PATH="/scripts:/py/bin:$PATH"
 
